@@ -27,10 +27,24 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Avalonia" Version="$(AvaloniaVersion)" />
     <PackageReference Include="HtmlAgilityPack" Version="1.11.42" />
   </ItemGroup>
-  
+
+  <ItemGroup Condition="'$(UseAvaloniaFork)' == 'False'">
+    <PackageReference Include="Avalonia" Version="$(AvaloniaVersion)" />
+    <PackageReference Include="Avalonia.AvaloniaEdit" Version="$(AvaloniaEditVersion)" />
+  </ItemGroup>
+
+  <Import Condition="'$(UseAvaloniaFork)' == 'True'" Project="..\AvaloniaInclude.props" />
+  <Import Condition="'$(UseAvaloniaFork)' == 'True'" Project="$(AvaloniaRootDir)\build\BuildTargets.targets"/>
+  <Import Condition="'$(UseAvaloniaFork)' == 'True'" Project="$(AvaloniaRootDir)\build\SourceGenerators.props" />
+  <ItemGroup Condition="'$(UseAvaloniaFork)' == 'True'">
+    <Reference Include="Avalonia.AvaloniaEdit">
+      <HintPath>$(AvaloniaEditIncludeDir)\bin\$(Configuration)\$(TargetFramework)\AvaloniaEdit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+
   <ItemGroup>
     <None Include="..\pack_readme\Markdown.Avalonia.Html.md" Pack="true" PackagePath="\" />
   </ItemGroup>

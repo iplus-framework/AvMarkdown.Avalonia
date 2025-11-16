@@ -21,11 +21,20 @@
     <None Include="..\pack_readme\Markdown.Avalonia.SyntaxHigh.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
-  <ItemGroup>
+  <ItemGroup Condition="'$(UseAvaloniaFork)' == 'False'">
     <PackageReference Include="Avalonia" Version="$(AvaloniaVersion)" />
     <PackageReference Include="Avalonia.AvaloniaEdit" Version="$(AvaloniaEditVersion)" />
   </ItemGroup>
-  
+
+  <ItemGroup Condition="'$(UseAvaloniaFork)' == 'True'">
+    <Reference Include="Avalonia.AvaloniaEdit">
+      <HintPath>$(AvaloniaEditIncludeDir)\bin\$(Configuration)\$(TargetFramework)\AvaloniaEdit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <Import Condition="'$(UseAvaloniaFork)' == 'True'" Project="..\AvaloniaInclude.props" />
+  <Import Condition="'$(UseAvaloniaFork)' == 'True'" Project="$(AvaloniaRootDir)\build\BuildTargets.targets"/>
+  <Import Condition="'$(UseAvaloniaFork)' == 'True'" Project="$(AvaloniaRootDir)\build\SourceGenerators.props" />
+
   <ItemGroup>
     <ProjectReference Include="..\Markdown.Avalonia.Tight\Markdown.Avalonia.Tight.csproj" PrivateAssets="All" />
   </ItemGroup>

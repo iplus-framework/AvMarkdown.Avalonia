@@ -23,6 +23,10 @@
     <None Include="..\pack_readme\Markdown.Avalonia.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
+  <Import Condition="'$(UseAvaloniaFork)' == 'True'" Project="..\AvaloniaInclude.props" />
+  <Import Condition="'$(UseAvaloniaFork)' == 'True'" Project="$(AvaloniaRootDir)\build\BuildTargets.targets"/>
+  <Import Condition="'$(UseAvaloniaFork)' == 'True'" Project="$(AvaloniaRootDir)\build\SourceGenerators.props" />
+
   <ItemGroup>
     <ProjectReference Include="..\Markdown.Avalonia.Html\Markdown.Avalonia.Html.csproj" />
     <ProjectReference Include="..\Markdown.Avalonia.Svg\Markdown.Avalonia.Svg.csproj" />

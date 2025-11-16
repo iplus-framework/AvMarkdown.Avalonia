@@ -13,15 +13,27 @@
     <AvaloniaResource Include="Assets\**" />
     <AvaloniaResource Include="Assets2\**" />
   </ItemGroup>
-  <ItemGroup>
+  <ItemGroup Condition="'$(UseAvaloniaFork)' == 'False'">
     <PackageReference Include="Avalonia" Version="$(DemoAvaloniaVersion)" />
     <PackageReference Include="Avalonia.Themes.Simple" Version="$(DemoAvaloniaVersion)" />
     <PackageReference Include="Avalonia.Desktop" Version="$(DemoAvaloniaVersion)" />
-    <PackageReference Include="FluentAvaloniaUI" Version="2.0.5" />
     <PackageReference Include="Avalonia.ReactiveUI" Version="$(DemoAvaloniaVersion)" />
     <PackageReference Include="Avalonia.Markup.Xaml.Loader" Version="$(DemoAvaloniaVersion)" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="FluentAvaloniaUI" Version="2.0.5" />
     <None Remove="Assets\XamlTemplate.txt" />
   </ItemGroup>
+  
+  <PropertyGroup Condition="'$(UseAvaloniaFork)' == 'True'">
+    <AvaloniaRootDir>..\..\..\av_main</AvaloniaRootDir>
+    <AvaloniaNativeBuildDir>$(AvaloniaRootDir)\packages\Avalonia\bin</AvaloniaNativeBuildDir>
+    <AvaloniaMarkupBuildDir>$(AvaloniaRootDir)\src\Markup\Avalonia.Markup.Xaml.Loader\bin</AvaloniaMarkupBuildDir>
+  </PropertyGroup>
+  <Import Condition="'$(UseAvaloniaFork)' == 'True'" Project="..\..\AvaloniaInclude.props" />
+  <Import Condition="'$(UseAvaloniaFork)' == 'True'" Project="$(AvaloniaRootDir)\build\BuildTargets.targets"/>
+  <Import Condition="'$(UseAvaloniaFork)' == 'True'" Project="$(AvaloniaRootDir)\build\SourceGenerators.props" />
+  
   <ItemGroup>
     <Compile Include="..\..\tests\UnitTest.Base\Utils\BrokenXamlWriter.cs" Link="BrokenXamlWriter.cs" />
     <Compile Include="..\..\tests\UnitTest.Base\Utils\Util.cs" Link="Util.cs" />

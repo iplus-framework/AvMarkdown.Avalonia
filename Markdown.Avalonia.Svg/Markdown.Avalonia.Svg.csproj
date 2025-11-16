@@ -17,9 +17,39 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
+  <ItemGroup Condition="'$(UseAvaloniaFork)' == 'False'">
     <PackageReference Include="Avalonia" Version="$(AvaloniaVersion)" />
     <PackageReference Include="Avalonia.Svg" Version="$(AvaloniaSvgVersion)" />
+  </ItemGroup>
+
+  <Import Condition="'$(UseAvaloniaFork)' == 'True'" Project="..\AvaloniaInclude.props" />
+  <Import Condition="'$(UseAvaloniaFork)' == 'True'" Project="$(AvaloniaRootDir)\build\BuildTargets.targets"/>
+  <Import Condition="'$(UseAvaloniaFork)' == 'True'" Project="$(AvaloniaRootDir)\build\SourceGenerators.props" />
+  <ItemGroup Condition="'$(UseAvaloniaFork)' == 'True'">
+    <Reference Include="Svg.Skia">
+      <HintPath>$(AvaloniaSvgIncludeDir)\Svg.Skia\bin\$(Configuration)\$(AvaloniaBuildFramework)\Svg.Skia.dll</HintPath>
+    </Reference>
+    <Reference Include="Svg.Model">
+      <HintPath>$(AvaloniaSvgIncludeDir)\Svg.Model\bin\$(Configuration)\$(AvaloniaBuildFramework)\Svg.Model.dll</HintPath>
+    </Reference>
+    <Reference Include="Svg.Custom">
+      <HintPath>$(AvaloniaSvgIncludeDir)\Svg.Custom\bin\$(Configuration)\$(AvaloniaBuildFramework)\Svg.Custom.dll</HintPath>
+    </Reference>
+    <Reference Include="Svg.Controls.Avalonia">
+      <HintPath>$(AvaloniaSvgIncludeDir)\Svg.Controls.Avalonia\bin\$(Configuration)\$(AvaloniaBuildFramework)\Svg.Controls.Avalonia.dll</HintPath>
+    </Reference>
+    <Reference Include="ShimSkiaSharp">
+      <HintPath>$(AvaloniaSvgIncludeDir)\ShimSkiaSharp\bin\$(Configuration)\$(AvaloniaBuildFramework)\ShimSkiaSharp.dll</HintPath>
+    </Reference>
+    <!--<Reference Include="xxx">
+      <HintPath>$(AvaloniaSvgIncludeDir)\xxx\bin\$(Configuration)\$(AvaloniaBuildFramework)\xxx.dll</HintPath>
+    </Reference>
+    <Reference Include="xxx">
+      <HintPath>$(AvaloniaSvgIncludeDir)\xxx\bin\$(Configuration)\$(AvaloniaBuildFramework)\xxx.dll</HintPath>
+    </Reference>
+    <Reference Include="xxx">
+      <HintPath>$(AvaloniaSvgIncludeDir)\xxx\bin\$(Configuration)\$(AvaloniaBuildFramework)\xxx.dll</HintPath>
+    </Reference>-->
   </ItemGroup>
   
   <ItemGroup>
