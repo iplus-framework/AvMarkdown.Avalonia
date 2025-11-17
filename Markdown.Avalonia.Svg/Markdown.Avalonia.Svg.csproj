@@ -18,39 +18,16 @@
   </PropertyGroup>
 
   <ItemGroup Condition="'$(UseAvaloniaFork)' == 'False'">
-    <PackageReference Include="Avalonia" Version="$(AvaloniaVersion)" />
-    <PackageReference Include="Avalonia.Svg" Version="$(AvaloniaSvgVersion)" />
+    <PackageReference Include="Avalonia" />
+    <PackageReference Include="Avalonia.Svg" />
   </ItemGroup>
 
-  <Import Condition="'$(UseAvaloniaFork)' == 'True'" Project="..\AvaloniaInclude.props" />
-  <Import Condition="'$(UseAvaloniaFork)' == 'True'" Project="$(AvaloniaRootDir)\build\BuildTargets.targets"/>
-  <Import Condition="'$(UseAvaloniaFork)' == 'True'" Project="$(AvaloniaRootDir)\build\SourceGenerators.props" />
-  <ItemGroup Condition="'$(UseAvaloniaFork)' == 'True'">
-    <Reference Include="Svg.Skia">
-      <HintPath>$(AvaloniaSvgIncludeDir)\Svg.Skia\bin\$(Configuration)\$(AvaloniaBuildFramework)\Svg.Skia.dll</HintPath>
-    </Reference>
-    <Reference Include="Svg.Model">
-      <HintPath>$(AvaloniaSvgIncludeDir)\Svg.Model\bin\$(Configuration)\$(AvaloniaBuildFramework)\Svg.Model.dll</HintPath>
-    </Reference>
-    <Reference Include="Svg.Custom">
-      <HintPath>$(AvaloniaSvgIncludeDir)\Svg.Custom\bin\$(Configuration)\$(AvaloniaBuildFramework)\Svg.Custom.dll</HintPath>
-    </Reference>
-    <Reference Include="Svg.Controls.Avalonia">
-      <HintPath>$(AvaloniaSvgIncludeDir)\Svg.Controls.Avalonia\bin\$(Configuration)\$(AvaloniaBuildFramework)\Svg.Controls.Avalonia.dll</HintPath>
-    </Reference>
-    <Reference Include="ShimSkiaSharp">
-      <HintPath>$(AvaloniaSvgIncludeDir)\ShimSkiaSharp\bin\$(Configuration)\$(AvaloniaBuildFramework)\ShimSkiaSharp.dll</HintPath>
-    </Reference>
-    <!--<Reference Include="xxx">
-      <HintPath>$(AvaloniaSvgIncludeDir)\xxx\bin\$(Configuration)\$(AvaloniaBuildFramework)\xxx.dll</HintPath>
-    </Reference>
-    <Reference Include="xxx">
-      <HintPath>$(AvaloniaSvgIncludeDir)\xxx\bin\$(Configuration)\$(AvaloniaBuildFramework)\xxx.dll</HintPath>
-    </Reference>
-    <Reference Include="xxx">
-      <HintPath>$(AvaloniaSvgIncludeDir)\xxx\bin\$(Configuration)\$(AvaloniaBuildFramework)\xxx.dll</HintPath>
-    </Reference>-->
-  </ItemGroup>
+  <!-- iPlus settings and overrides -->
+  <Import Condition="'$(UseAvaloniaFork)' == 'True'" Project="$(MSBuildThisFileDirectory)../../iPlus/build/AvaloniaInclude.props" />
+  <Import Condition="'$(UseAvaloniaFork)' == 'True'" Project="$(AvaloniaRootDir)/build/BuildTargets.targets" />
+  <Import Condition="'$(UseAvaloniaFork)' == 'True'" Project="$(AvaloniaRootDir)/build/SourceGenerators.props" />
+  <Import Condition="'$(UseAvaloniaFork)' == 'True'" Project="$(MSBuildThisFileDirectory)../../iPlus/build/AvaloniaSvgSkiaInclude.props" />
+  <!-- End iPlus settings and overrides -->
   
   <ItemGroup>
     <None Include="..\pack_readme\Markdown.Avalonia.Svg.md" Pack="true" PackagePath="\" />
