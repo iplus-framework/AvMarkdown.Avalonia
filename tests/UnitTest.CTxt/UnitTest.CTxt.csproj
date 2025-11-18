@@ -26,10 +26,14 @@
     </Compile>
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Avalonia" Version="$(TestAvaloniaVersion)" />
-    <PackageReference Include="Avalonia.Desktop" Version="$(TestAvaloniaVersion)" />
+  <ItemGroup Condition="'$(UseAvaloniaFork)' == 'False'">
+    <PackageReference Include="Avalonia" />
+    <PackageReference Include="Avalonia.Desktop" />
   </ItemGroup>
+
+  <!-- iPlus settings and overrides -->
+  <Import Condition="'$(UseAvaloniaFork)' == 'True'" Project="../../../iPlus/build/AvaloniaInclude.props" />
+  <!-- End iPlus settings and overrides -->
 
   <ItemGroup>
     <ProjectReference Include="..\..\ColorTextBlock.Avalonia\ColorTextBlock.Avalonia.csproj" />

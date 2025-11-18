@@ -15,9 +15,13 @@
     </Compile>
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Avalonia" Version="$(TestAvaloniaVersion)" />
-    <PackageReference Include="Avalonia.Desktop" Version="$(TestAvaloniaVersion)" />
-    <PackageReference Include="Avalonia.Themes.Simple" Version="$(TestAvaloniaVersion)" />
+  <ItemGroup Condition="'$(UseAvaloniaFork)' == 'False'">
+    <PackageReference Include="Avalonia" />
+    <PackageReference Include="Avalonia.Desktop" />
+    <PackageReference Include="Avalonia.Themes.Simple" />
   </ItemGroup>
+
+  <!-- iPlus settings and overrides -->
+  <Import Condition="'$(UseAvaloniaFork)' == 'True'" Project="../../../iPlus/build/AvaloniaInclude.props" />
+  <!-- End iPlus settings and overrides -->  
 </Project>

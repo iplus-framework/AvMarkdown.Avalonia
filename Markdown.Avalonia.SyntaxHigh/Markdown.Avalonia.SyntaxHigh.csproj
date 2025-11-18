@@ -28,8 +28,6 @@
 
   <!-- iPlus settings and overrides -->
   <Import Condition="'$(UseAvaloniaFork)' == 'True'" Project="$(MSBuildThisFileDirectory)../../iPlus/build/AvaloniaInclude.props" />
-  <Import Condition="'$(UseAvaloniaFork)' == 'True'" Project="$(AvaloniaRootDir)/build/BuildTargets.targets" />
-  <Import Condition="'$(UseAvaloniaFork)' == 'True'" Project="$(AvaloniaRootDir)/build/SourceGenerators.props" />
   <Import Condition="'$(UseAvaloniaFork)' == 'True'" Project="$(MSBuildThisFileDirectory)../../iPlus/build/AvaloniaEditInclude.props" />
   <!-- End iPlus settings and overrides -->
 

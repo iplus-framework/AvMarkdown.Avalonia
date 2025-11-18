@@ -20,6 +20,17 @@
     <PackageVersion Include="Avalonia.Fonts.Inter" Version="$(AvaloniaVersion)" />
     <PackageVersion Include="Avalonia.Svg" Version="$(AvaloniaSvgVersion)" />
     <PackageVersion Include="HtmlAgilityPack" Version="1.12.0" />
+    <PackageVersion Include="Serilog" Version="3.0.1" />
+    <PackageVersion Include="Serilog.Sinks.File" Version="5.0.0" />
+    <PackageVersion Include="FluentAvaloniaUI" Version="2.0.5" />
+    <PackageVersion Include="NUnit" Version="3.12.0" />
+    <PackageVersion Include="ApprovalTests" Version="5.2.4" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
+    <PackageVersion Include="NUnit3TestAdapter" Version="3.15.1" />
+    <PackageVersion Include="BenchmarkDotNet" Version="0.13.12" />
+    <PackageVersion Include="Html2Markdown" Version="6.2.0.3" />
+    <PackageVersion Include="ReverseMarkdown" Version="4.3.0" />
+    <PackageVersion Include="MarkdownFromHtml" Version="1.1.1" />
   </ItemGroup>
 
 </Project>

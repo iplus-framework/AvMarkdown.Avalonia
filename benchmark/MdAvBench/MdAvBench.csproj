@@ -9,17 +9,22 @@
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Avalonia" Version="$(TestAvaloniaVersion)" />
-    <PackageReference Include="Avalonia.Desktop" Version="$(TestAvaloniaVersion)" />
-    <PackageReference Include="Avalonia.Themes.Simple" Version="$(TestAvaloniaVersion)" />
+  <ItemGroup Condition="'$(UseAvaloniaFork)' == 'False'">
+    <PackageReference Include="Avalonia" />
+    <PackageReference Include="Avalonia.Desktop" />
+    <PackageReference Include="Avalonia.Themes.Simple" />
   </ItemGroup>
 
+
+  <!-- iPlus settings and overrides -->
+  <Import Condition="'$(UseAvaloniaFork)' == 'True'" Project="../../../iPlus/build/AvaloniaInclude.props" />
+  <!-- End iPlus settings and overrides -->
+
   <ItemGroup>
-    <PackageReference Include="BenchmarkDotNet" Version="0.13.12" />
-    <PackageReference Include="Html2Markdown" Version="6.2.0.3" />
-    <PackageReference Include="ReverseMarkdown" Version="4.3.0" />
-    <PackageReference Include="MarkdownFromHtml" Version="1.1.1" />
+    <PackageReference Include="BenchmarkDotNet" />
+    <PackageReference Include="Html2Markdown" />
+    <PackageReference Include="ReverseMarkdown" />
+    <PackageReference Include="MarkdownFromHtml" />
   </ItemGroup>
 
   <ItemGroup>

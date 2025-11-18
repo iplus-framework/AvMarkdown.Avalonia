@@ -27,20 +27,31 @@
     <PackageReference Include="Avalonia.Markup.Xaml.Loader" Version="$(DemoAvaloniaVersion)" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Serilog" Version="3.0.1" />
-    <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
+    <PackageReference Include="Serilog" />
+    <PackageReference Include="Serilog.Sinks.File" />
     <None Remove="Assets\XamlTemplate.txt" />
   </ItemGroup>
 
-  <PropertyGroup Condition="'$(UseAvaloniaFork)' == 'True'">
-    <AvaloniaRootDir>..\..\..\av_main</AvaloniaRootDir>
-    <AvaloniaNativeBuildDir>$(AvaloniaRootDir)\packages\Avalonia\bin</AvaloniaNativeBuildDir>
-    <AvaloniaMarkupBuildDir>$(AvaloniaRootDir)\src\Markup\Avalonia.Markup.Xaml.Loader\bin</AvaloniaMarkupBuildDir>
-  </PropertyGroup>
-  <Import Condition="'$(UseAvaloniaFork)' == 'True'" Project="..\..\AvaloniaInclude.props" />
-  <Import Condition="'$(UseAvaloniaFork)' == 'True'" Project="$(AvaloniaRootDir)\build\BuildTargets.targets"/>
-  <Import Condition="'$(UseAvaloniaFork)' == 'True'" Project="$(AvaloniaRootDir)\build\SourceGenerators.props" />
-  
+  <!-- iPlus settings and overrides -->
+  <ItemGroup Condition="'$(UseAvaloniaFork)' == 'true'">
+    <PackageReference Include="ReactiveUI" />
+    <PackageReference Include="SkiaSharp" />
+    <PackageReference Include="SkiaSharp.Skottie" />
+    <PackageReference Include="SkiaSharp.NativeAssets.Linux" />
+    <!--<PackageReference Include="SkiaSharp.NativeAssets.Linux.NoDependencies" />-->
+    <PackageReference Include="SkiaSharp.NativeAssets.Win32" />
+    <!--<PackageReference Include="SkiaSharp.NativeAssets.macOS" />-->
+    <!--<PackageReference Include="SkiaSharp.NativeAssets.Android" />-->
+    <PackageReference Include="SkiaSharp.NativeAssets.WebAssembly" />
+    <PackageReference Include="HarfBuzzSharp" />
+    <PackageReference Include="HarfBuzzSharp.NativeAssets.Linux" />
+    <PackageReference Include="HarfBuzzSharp.NativeAssets.Win32" />
+    <!--<PackageReference Include="HarfBuzzSharp.NativeAssets.macOS" />-->
+    <PackageReference Include="HarfBuzzSharp.NativeAssets.WebAssembly" />
+  </ItemGroup>
+  <Import Condition="'$(UseAvaloniaFork)' == 'True'" Project="../../../iPlus/build/AvaloniaInclude.props" />
+  <Import Condition="'$(UseAvaloniaFork)' == 'True'" Project="../../../iPlus/build/AvaloniaBaseReactiveInclude.props" />
+  <!-- End iPlus settings and overrides -->  
   <ItemGroup>
     <ProjectReference Include="..\..\Markdown.Avalonia\Markdown.Avalonia.csproj" />
   </ItemGroup>
