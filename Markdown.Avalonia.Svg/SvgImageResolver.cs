@@ -1,18 +1,17 @@
-﻿using System;
-using System.IO;
-using System.Xml;
+﻿using Avalonia.Media;
 using Avalonia.Svg;
-using Svg.Model;
-using Avalonia.Media;
 using Markdown.Avalonia.Utils;
+using System;
+using System.IO;
+using System.Reflection.Metadata;
 using System.Threading.Tasks;
-using Svg.Model.Services;
+using System.Xml;
 
 namespace Markdown.Avalonia.Svg
 {
     internal class SvgImageResolver : IImageResolver
     {
-        private static readonly AvaloniaSvgAssetLoader _svgAssetLoader = new();
+//        private static readonly AvaloniaAssetLoader _svgAssetLoader = new();
 
         public async Task<IImage?> Load(Stream stream)
         {
@@ -20,10 +19,10 @@ namespace Markdown.Avalonia.Svg
             {
                 if (IsSvgFile(stream))
                 {
-                    var document = SvgService.Open(stream);
-                    var picture = document is { } ? SvgService.ToModel(document, _svgAssetLoader, out _, out _) : default;
+                    var source = SvgSource.Load(stream);
+                    var picture = source.Picture;
                     var svgsrc = new SvgSource() { Picture = picture };
-                    return (IImage)new VectorImage() { Source = svgsrc };
+                    return new VectorImage() { Source = svgsrc };
                 }
 
                 return null;
