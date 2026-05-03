@@ -20,9 +20,6 @@
   <ItemGroup Condition="'$(UseAvaloniaFork)' == 'False'">
     <PackageReference Include="Avalonia" />
     <PackageReference Include="Avalonia.Svg" />
-  <ItemGroup>
-    <PackageReference Include="Avalonia" Version="$(AvaloniaVersion)" />
-    <PackageReference Include="Svg.Controls.Avalonia" Version="$(AvaloniaSvgVersion)" />
   </ItemGroup>
 
   <!-- iPlus settings and overrides -->

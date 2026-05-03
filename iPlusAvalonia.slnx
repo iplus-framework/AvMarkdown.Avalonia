@@ -1,0 +1,20 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/Solution Items/">
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+    <File Path="Markdown.Avalonia.props" />
+    <File Path="tests/UnitTest.props" />
+  </Folder>
+  <Project Path="ColorDocument.Avalonia/ColorDocument.Avalonia.csproj" />
+  <Project Path="ColorTextBlock.Avalonia/ColorTextBlock.Avalonia.csproj" />
+  <Project Path="Markdown.Avalonia.Html/Markdown.Avalonia.Html.csproj" />
+  <Project Path="Markdown.Avalonia.Svg/Markdown.Avalonia.Svg.csproj" />
+  <Project Path="Markdown.Avalonia.SyntaxHigh/Markdown.Avalonia.SyntaxHigh.csproj" />
+  <Project Path="Markdown.Avalonia.Tight/Markdown.Avalonia.Tight.csproj" />
+  <Project Path="Markdown.Avalonia/Markdown.Avalonia.csproj" />
+</Solution>
